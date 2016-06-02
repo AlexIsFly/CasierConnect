@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content1 %}
+<h3 class="section-name">
+	<span>
+		{{ queryset.pseudo }}
+	</span>
+</h3><!-- /.section-name -->
+{% endblock %}
+
+{% block section1 %}
+{% load static %}
+<section id="about" class="section-style" data-background-image="{% static 'images/background/about-us.jpg' %}">
+	<div class="pattern height-resize"> 
+		<div class="container">
+			<h2 class="section-title">
+				Vos Casiers
+			</h2><!-- /.Section-title  -->
+			<p class="section-description">
+				Appuyez sur la clé pour ouvrir votre casier.
+			</p><!-- /.section-description -->
+
+			<div class="team-container">
+				<div class="row">
+
+					{% for casier in queryset %}
+
+					<div class="col-sm-4">
+						<div class="team-member">
+							<figure>
+								<img src="{% static 'images/team/casier.png' %}" alt="Team Member">
+								<figcaption>
+									<p class="member-name">Casier n°{{ casier.id }}</p>
+									<p class="designation">
+										Objet : {{ casier.objet }}
+									</p><!-- /.designation -->
+								</figcaption>
+							</figure>
+							<div class="social-btn-container">
+								<div class="team-socail-btn">
+									<span class="social-btn-box twitter-btn-container">
+										<a href="http://192.168.1.18/choice?params=0" class="github-btn">
+											<i class="fa fa-key" aria-hidden="true"></i>
+										</a><!-- /.facebook-btn -->
+									</span><!-- /.social-btn-box -->
+								</div><!-- /.team-socail-btn -->
+							</div><!-- /.social-btn-container -->
+						</div><!-- /.team-member -->
+					</div><!-- /.col-sm-4 -->
+
+					{% endfor %}
+
+				</div><!-- /.row -->
+				
+			</div><!-- /.team-container -->
+
+			<div class="next-section">
+				<a class="go-to-subscribe"><span></span></a>
+			</div><!-- /.next-section -->
+
+		</div><!-- /.container -->
+	</div><!-- /.pattern -->
+	
+	
+</section><!-- /#about -->
+{% endblock %}

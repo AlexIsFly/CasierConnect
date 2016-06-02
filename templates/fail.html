@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content1 %}
+	{% if totalfail %}
+	<h3 class="section-name">
+		<span>
+			Tous les casiers sont occupés. Désolé.
+		</span>
+	</h3><!-- /.section-name -->
+	
+
+	{% else %}
+	<h3 class="section-name">
+		<span>
+			Le casier demandé est occupé.</br>
+			Je vous conseille le casier n°{{ casierfree.id }}
+		</span>
+	</h3><!-- /.section-name -->
+
+	{% endif %}
+{% endblock %}

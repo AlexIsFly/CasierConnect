@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content1 %}
+	<h3 class="section-name">
+		<span>
+			Vous pouvez ouvrir le casier n°{{ casier.id }} !
+		</span>
+	</h3><!-- /.section-name -->
+{% endblock %}
+
+
+{% block section1 %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+	<section id="page-top2" class="section-style" data-background-image="{% static 'images/background/page-top2.jpg' %}">
+		<div class="pattern height-resize">
+			<div class="container">
+				<h2 class="section-title">Demande de Casier n°{{ casier.id }}</h2>
+				<form class="form-horizontal" action="{% url 'signup' id=casier.id %}" method="post">
+					{% if valide %}
+					<p class="section-description">
+						<strong>Votre demande a bien été envoyée</strong></br>
+						{% if Password %}
+						Votre mot de passe est : {{ Password }}
+						<span><a class="btn btn-primary btn-block" href="http://192.168.1.18/choice?params=1" role="button">Let's go !</a></span>
+						
+						{% endif %}
+					</p><!-- /.section-description -->
+					{% else %}
+						<form action="{% url 'signup' id=casier.id %}" method="post">
+						  {% csrf_token %}
+						  {% crispy form %}
+				   
+<!-- 					<input class="btn btn-warning btn-block btn-lg" type="submit" value="Envoyer" />
+ -->
+					{% endif %}
+				</form>
+
+				<div class="next-section">
+					<a class="go-to-subscribe"><span></span></a>
+				</div><!-- /.next-section -->
+			</div>
+		</div>
+	</section>
+{% endblock %}
